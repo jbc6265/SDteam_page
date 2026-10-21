@@ -136,7 +136,23 @@ node scripts/check.mjs
 node scripts/build.mjs
 ```
 
-검사는 로컬 참조 파일, 앵커, 중복 ID, 요청된 기사 8건과 분류를 확인합니다. `dist/`는 생성물로 Git에 포함하지 않습니다. `dist/`의 파일을 정적 호스팅 루트에 업로드하면 됩니다. 서버 기능이나 환경변수는 필요 없습니다. GitHub push 자체가 GitHub Pages를 활성화하지는 않습니다.
+검사는 로컬 참조 파일, 앵커, 중복 ID, 요청된 기사 8건과 분류를 확인합니다. `dist/`는 생성물로 Git에 포함하지 않습니다. `dist/`의 파일을 정적 호스팅 루트에 업로드하면 됩니다. 서버 기능이나 환경변수는 필요 없습니다.
+
+## GitHub Pages 자동 배포
+
+공개 사이트: **https://jbc6265.github.io/SDteam_page/**
+
+`main` 브랜치에 push하면 `.github/workflows/pages.yml`이 자동 실행되어 소스 검사 → `dist/` 생성 → GitHub Pages 배포 순서로 진행합니다. 사이트에 필요한 정적 파일만 배포하며 README와 개발용 스크립트는 배포 결과물에 포함하지 않습니다.
+
+```powershell
+git add index.html styles.css content.js script.js assets
+git commit -m "Update landing page content"
+git push origin main
+```
+
+[Actions 배포 이력](https://github.com/jbc6265/SDteam_page/actions/workflows/pages.yml)에서 성공 여부를 확인하세요. `Run workflow`로 수동 배포할 수도 있습니다. 검사가 실패하면 해당 버전은 배포되지 않습니다. 저장소의 Settings → Pages → Source는 **GitHub Actions**로 설정되어 있습니다.
+
+기존 Sites 주소는 별도의 배포입니다. GitHub push는 GitHub Pages를 갱신하며, 기존 Sites 사이트에는 자동 반영되지 않습니다.
 
 Sites 배포 시에는 `dist/`와 `.openai/hosting.json`을 사용합니다. 일반 GitHub 협업에는 Sites 계정이나 도구가 필요하지 않습니다. 인증 정보는 저장소에 포함하지 않습니다.
 
