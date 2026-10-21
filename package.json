@@ -1,0 +1,11 @@
+{
+  "name": "hd-supplier-development-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HD건설기계 협력사육성팀 정적 랜딩페이지",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node --check script.js && node --check content.js && node scripts/check.mjs"
+  }
+}
